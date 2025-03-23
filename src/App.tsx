@@ -13,7 +13,7 @@ function App() {
             <QueryParamProvider<SearchFilters>
               defaultValues={{
                 name: "ignacio",
-                option: "2",
+                // option: "2",
               }}
             >
               <Page />

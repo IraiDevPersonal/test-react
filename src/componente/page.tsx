@@ -4,7 +4,7 @@ import { useQueryParams } from "../context/query-params-context";
 import { SearchFilters } from "../interfaces/search-filters";
 
 const Page = () => {
-  const { queryAsObject, setQuery } = useQueryParams<SearchFilters>();
+  const { setQuery, getValue } = useQueryParams<SearchFilters>();
   return (
     <div
       style={{
@@ -18,7 +18,7 @@ const Page = () => {
     >
       <select
         name="option"
-        value={queryAsObject.option ?? ""}
+        value={getValue("option", "")}
         onChange={(e) => setQuery({ option: e.target.value })}
       >
         <option value="">seleccione</option>
@@ -36,8 +36,8 @@ export default Page;
 
 let flag = false;
 function ChildComponent() {
-  const { queryAsObject, setQuery } = useQueryParams<SearchFilters>();
-  const [inputValue, setInputValue] = React.useState(queryAsObject.name ?? "");
+  const { setQuery, getValue } = useQueryParams<SearchFilters>();
+  const [inputValue, setInputValue] = React.useState(getValue("name", ""));
   // const [isSearching, setIsSearching] = React.useState(false);
   const debouncedValue = useDebounce(inputValue, 300);
 
